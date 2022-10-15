@@ -1,9 +1,9 @@
 <?php
 /**
- * @package		mod_qlform
- * @copyright	Copyright (C) 2017 ql.de All rights reserved.
- * @author 		Mareike Riegel mareike.riegel@ql.de
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package        mod_qlform
+ * @copyright    Copyright (C) 2017 ql.de All rights reserved.
+ * @author        Mareike Riegel mareike.riegel@ql.de
+ * @license        GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
@@ -28,12 +28,13 @@ class JFormFieldCheckpluginsystemqldebug extends JFormField
      */
     protected function getInput()
     {
-        if(false==$this->checkIfPluginExists('system','qldebug')) return JFactory::getApplication()->enqueueMessage(JText::_('MOD_QLDEBUG_MSG_PLUGINNOTFOUNDORCONFIGURATED'),'error');
+        if (false == $this->checkIfPluginExists('system', 'qldebug')) return JFactory::getApplication()->enqueueMessage(JText::_('MOD_QLDEBUG_MSG_PLUGINNOTFOUNDORCONFIGURATED'), 'error');
     }
-    protected function checkIfPluginExists($type,$strPlugin)
+
+    protected function checkIfPluginExists($type, $strPlugin)
     {
-        $plg=JPluginHelper::getPlugin($type,$strPlugin);
-        if(0<count($plg))return true;
+        $plg = JPluginHelper::getPlugin($type, $strPlugin);
+        if (0 < count($plg)) return true;
         return false;
     }
 }
