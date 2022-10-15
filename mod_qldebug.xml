@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.7"
+	client="site"
+	method="upgrade">
+	<name>mod_qldebug</name>
+	<author>Mareike Riegel</author>
+	<creationDate>2017</creationDate>
+	<copyright>ql.de</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>mareike.riegel@ql.de</authorEmail>
+	<authorUrl>ql.de</authorUrl>
+	<version>2.0.3</version>
+	<description>MOD_QLDEBUG_DESCRIPTION</description>
+    <updateservers>
+        <server type="extension" priority="1" name="qldebug - Updates"><![CDATA[https://www.blackforest-software.com/_scripts/updates/mod_qldebug.xml]]></server>
+    </updateservers>
+	<files>
+		<filename module="mod_qldebug">mod_qldebug.php</filename>
+		<folder>css</folder>
+        <folder>php</folder>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename>index.html</filename>
+        <filename>mod_qldebug.xml</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_qldebug.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_qldebug.sys.ini</language>
+        <language tag="de-DE">language/de-DE/de-DE.mod_qldebug.ini</language>
+        <language tag="de-DE">language/de-DE/de-DE.mod_qldebug.sys.ini</language>
+	</languages>
+	<config>
+        <fields name="params"
+                addrulepath="/plugins/system/qldebug/php/rules"
+                addfieldpath="/modules/mod_qldebug/php/fields">
+            <fieldset name="basic">
+                <field name="checkplugin"
+                       type="checkpluginsystemqldebug"
+                       />
+                <field
+                        name="stateAccess"
+                        type="list"
+                        default="0"
+                        label="MOD_QLDEBUG_STATEACCESS_LABEL"
+                        description="MOD_QLDEBUG_STATEACCESS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">MOD_QLDEBUG_STATEACCESS_LOGGEDUSERGROUP</option>
+                    <option value="2">MOD_QLDEBUG_STATEACCESS_LOGGEDIN</option>
+                    <option value="3">MOD_QLDEBUG_STATEACCESS_NOTLOGGEDIN</option>
+                    <option value="4">MOD_QLDEBUG_STATEACCESS_ALWAYS</option>
+                    <option value="5">MOD_QLDEBUG_STATEACCESS_IP</option>
+                </field>
+                <field name="usergroup"
+                       type="usergroup"
+                       label="MOD_QLDEBUG_USERGROUP_LABEL"
+                       description="MOD_QLDEBUG_USERGROUP_DESC"
+                       default="8">
+                </field>
+                <field name="ip"
+                       type="text"
+                       label="MOD_QLDEBUG_IP_LABEL"
+                       description="MOD_QLDEBUG_IP_DESC"
+                       default="127.0.0.1">
+                </field>
+                <field
+                        name="stateSite"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_STATESITE_LABEL"
+                        description="MOD_QLDEBUG_STATESITE_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                        name="stateAdmin"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_STATEADMIN_LABEL"
+                        description="MOD_QLDEBUG_STATEADMIN_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+            </fieldset>
+            <fieldset name="output">
+                <field
+                        name="output"
+                        type="radio"
+                        class="btn-group"
+                        default="1"
+                        label="MOD_QLDEBUG_OUTPUT_LABEL"
+                        description="MOD_QLDEBUG_OUTPUT_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                    <option value="2">MOD_QLDEBUG_OUTPUT_BARE</option>
+                </field>
+                <field
+                        name="message"
+                        type="editor"
+                        filter="safehtml"
+                        height="50px"
+                        rows="10"
+                        label="MOD_QLDEBUG_MESSAGE_LABEL"
+                        description="MOD_QLDEBUG_MESSAGE_DESC">
+                </field>
+                <field
+                        name="pre"
+                        type="radio"
+                        default="1"
+                        class="btn-group"
+                        label="MOD_QLDEBUG_PRE_LABEL"
+                        description="MOD_QLDEBUG_PRE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="preBreakWord"
+                        type="list"
+                        default="1"
+                        label="MOD_QLDEBUG_PREBREAKWORD_LABEL"
+                        description="MOD_QLDEBUG_PREBREAKWORD_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="quicklinks"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_QUICKLINKS_LABEL"
+                        description="MOD_QLDEBUG_QUICKLINKS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="exit"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_EXIT_LABEL"
+                        description="MOD_QLDEBUG_EXIT_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="css"
+                        type="textarea"
+                        default="overflow:scroll;&#13;&#10;height:500px;&#13;&#10;box-sizing:border-box;&#13;&#10;width:100%;&#13;&#10;word-wrap:break-word;&#13;&#10;background:rgba(255,255,255,0.7);&#13;&#10;float:left;&#13;&#10;padding:20px;border:3px solid rgb(200,200,200);"
+                        label="MOD_QLDEBUG_CSS_LABEL"
+                        description="MOD_QLDEBUG_CSS_DESC"
+                        cols="100"
+                        rows="10"
+                        >
+                </field>
+            </fieldset>
+            <fieldset name="tech">
+                <field
+                        name="browsersize"
+                        type="radio"
+                        default="0"
+                        class="btn-group"
+                        label="MOD_QLDEBUG_BROWSERSIZE_LABEL"
+                        description="MOD_QLDEBUG_BROWSERSIZE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="device"
+                        type="radio"
+                        default="0"
+                        class="btn-group"
+                        label="MOD_QLDEBUG_DEVICE_LABEL"
+                        description="MOD_QLDEBUG_DEVICE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            <fieldset name="database">
+                <field
+                        name="databasestorage"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        validate="qldebugchecktableexists"
+                        label="MOD_QLDEBUG_DATABASESTORAGE_LABEL"
+                        description="MOD_QLDEBUG_DATABASESTORAGE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="databasegeneratetable"
+                        type="qldebuggeneratetable"
+                        label="MOD_QLDEBUG_DATABASEGENERATETABLE_LABEL"
+                        description="MOD_QLDEBUG_DATABASEGENERATETABLE_DESC">
+                </field>
+            </fieldset>
+            <fieldset name="globals">
+                <field
+                        name="post"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_POST_LABEL"
+                        description="MOD_QLDEBUG_POST_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="get"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_GET_LABEL"
+                        description="MOD_QLDEBUG_GET_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="server"
+                        type="qldebugservermodule"
+                        Xtype="radio"
+                        class="btn-group"
+                        label="MOD_QLDEBUG_SERVER_LABEL"
+                        description="MOD_QLDEBUG_SERVER_DESC">
+                </field>
+                <field
+                        name="globals"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_GLOBALS_LABEL"
+                        description="MOD_QLDEBUG_GLOBALS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="files"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_FILES_LABEL"
+                        description="MOD_QLDEBUG_FILES_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="request"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_REQUEST_LABEL"
+                        description="MOD_QLDEBUG_REQUEST_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="session"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_SESSION_LABEL"
+                        description="MOD_QLDEBUG_SESSION_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="cookie"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_COOKIE_LABEL"
+                        description="MOD_QLDEBUG_COOKIE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            <fieldset name="joomla">
+                <field
+                        name="jinput"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_JINPUT_LABEL"
+                        description="MOD_QLDEBUG_JINPUT_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="juser"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_JUSER_LABEL"
+                        description="MOD_QLDEBUG_JUSER_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="japplication"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_JAPPLICATION_LABEL"
+                        description="MOD_QLDEBUG_JAPPLICATION_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+            <fieldset name="table">
+                <field
+                        name="table"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_TABLE_LABEL"
+                        description="MOD_QLDEBUG_TABLE_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="tablename"
+                        type="text"
+                        default=""
+                        label="MOD_QLDEBUG_TABLENAME_LABEL"
+                        description="MOD_QLDEBUG_TABLENAME_DESC">
+                </field>
+                <field
+                        name="tablecolumns"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_TABLECOLUMNS_LABEL"
+                        description="MOD_QLDEBUG_TABLECOLUMNS_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="tabledata"
+                        type="list"
+                        default="0"
+                        label="MOD_QLDEBUG_TABLEDATA_LABEL"
+                        description="MOD_QLDEBUG_TABLEDATA_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field
+                        name="tablequery"
+                        type="textarea"
+                        label="MOD_QLDEBUG_TABLEQUERY_LABEL"
+                        description="MOD_QLDEBUG_TABLEQUERY_DESC"
+                        validate="qldebugdbprotection"
+                        cols="100"
+                        rows="10"
+                        >
+                </field>
+            </fieldset>
+            <fieldset name="files">
+                <field
+                        name="includedfiles"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="MOD_QLDEBUG_INCLUDEDFILES_LABEL"
+                        description="MOD_QLDEBUG_INCLUDEDFILES_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+            </fieldset>
+		</fields>
+	</config>
+</extension>
