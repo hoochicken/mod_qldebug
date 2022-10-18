@@ -34,7 +34,6 @@
 	</languages>
 	<config>
         <fields name="params"
-                addrulepath="/plugins/system/qldebug/php/rules"
                 addfieldpath="/modules/mod_qldebug/php/fields">
             <fieldset name="basic">
                 <field name="checkplugin"
