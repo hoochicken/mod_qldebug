@@ -9,4 +9,4 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<h3 id="<?php echo $v;?>"><?php echo ucwords($v);?></h3>
+<h3 id="<?php echo $v; ?>"><?php echo ucwords($v); ?></h3>

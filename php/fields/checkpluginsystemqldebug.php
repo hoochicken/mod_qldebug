@@ -28,12 +28,11 @@ class JFormFieldCheckpluginsystemqldebug extends JFormField
      */
     protected function getInput()
     {
-        if(false==$this->checkIfPluginExists('system','qldebug')) return JFactory::getApplication()->enqueueMessage(JText::_('MOD_QLDEBUG_MSG_PLUGINNOTFOUNDORCONFIGURATED'),'error');
+        if (!$this->checkIfPluginExists('system', 'qldebug')) JFactory::getApplication()->enqueueMessage(JText::_('MOD_QLDEBUG_MSG_PLUGINNOTFOUNDORCONFIGURATED'), 'error');
     }
-    protected function checkIfPluginExists($type,$strPlugin)
+
+    protected function checkIfPluginExists($type, $strPlugin)
     {
-        $plg=JPluginHelper::getPlugin($type,$strPlugin);
-        if(0<count($plg))return true;
-        return false;
+        return is_object(JPluginHelper::getPlugin($type, $strPlugin));
     }
 }

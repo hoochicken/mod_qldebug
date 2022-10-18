@@ -9,15 +9,14 @@
 // no direct access
 defined('_JEXEC') or die;
 ?>
-<div class="<?php echo $v;?>">
-    <?php if(2!=$params->get('output',1)) require $obj_plugin->getLayoutPath('_headline');?>
-    <?php if (1==$params->get('quicklinks',0))require $obj_plugin->getLayoutPath('_totop');?>
-    <?php if (1==$params->get('pre'))
-    {
-    	echo '<pre';
-	    if (1==$params->get('preBreakWord')) echo ' style="white-space:pre-wrap;"';
-	    echo '>';
-    }?>
-    <?php print_r($obj_plugin->$v);?>
-    <?php if (1==$params->get('pre')) echo '</pre>';?>
+<div class="<?php echo $v; ?>">
+    <?php if (2 != $params->get('output', 1)) require $obj_plugin->getLayoutPath('_headline'); ?>
+    <?php if (1 == $params->get('quicklinks', 0)) require $obj_plugin->getLayoutPath('_totop'); ?>
+    <?php if (1 == $params->get('pre')) {
+        echo '<pre';
+        if (1 == $params->get('preBreakWord')) echo ' style="white-space:pre-wrap;"';
+        echo '>';
+    } ?>
+    <?php print_r($obj_plugin->$v); ?>
+    <?php if (1 == $params->get('pre')) echo '</pre>'; ?>
 </div>
