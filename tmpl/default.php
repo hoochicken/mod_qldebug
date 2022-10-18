@@ -6,6 +6,8 @@
  * @license        GNU General Public License version 2 or later; see LICENSE.txt
  */
 
+/* @var \Joomla\Registry\Registry $params */
+
 // no direct access
 defined('_JEXEC') or die;
 ?>
@@ -20,7 +22,7 @@ defined('_JEXEC') or die;
         <?php endif; ?>
         <div id="qldebugInnerContainer" class="qldebugInner <?php if (2 != $params->get('output', 1)) echo 'bare'; ?>">
             <?php
-            if ('' != trim(strip_tags($params->get('message')))) echo '<div class="message">' . $params->get('message') . '</div>';
+            if (!empty(trim(strip_tags($params->get('message'))))) echo '<div class="message">' . $params->get('message') . '</div>';
             if (1 == $params->get('quicklinks', 0)) require $obj_plugin->getLayoutPath('_quicklinks');
             foreach ($obj_plugin->arrQldebug as $v):
                 if (preg_match('/misc/', $v)) require $obj_plugin->getLayoutPath('_misc');
@@ -32,4 +34,4 @@ defined('_JEXEC') or die;
             ?>
         </div>
     </div>
-<?php if (1 == $params->get('exit') and 'admin' != JFactory::getApplication()->isAdmin()) exit; ?>
+<?php if (1 == $params->get('exit') && 'admin' != JFactory::getApplication()->isClient('administrator')) exit; ?>
